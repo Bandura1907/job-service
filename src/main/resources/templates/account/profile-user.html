@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+  <title>TheJobs - Add resume</title>
+
+  <!-- Styles -->
+  <link th:href="@{/css/app.min.css}" rel="stylesheet">
+  <link th:href="@{/vendors/summernote/summernote.css}" rel="stylesheet">
+  <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="nav-on-header">
+
+<!-- Navigation bar -->
+<nav th:replace="~{fragment/heder-footer-fragment :: header(${user})}" class="navbar">
+
+</nav>
+<!-- END Navigation bar -->
+
+<form method="post" th:action="@{/account/save}" enctype="multipart/form-data">
+  <input type="hidden" readonly th:field="*{user.id}">
+  <input type="hidden" readonly th:field="*{user.username}">
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="container page-name">
+      <h1 class="text-center">Add your resume</h1>
+      <p class="lead text-center">Create your resume and put it online.</p>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="form-group">
+            <input type="file" name="file" class="dropify" th:attr="data-default-file=@{'/avatars/' + ${user.photo}}" >
+            <span class="help-block">Please choose a 4:6 profile picture.</span>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-8">
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Name" th:field="*{user.name}">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Last name" th:field="*{user.sureName}">
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" rows="3" placeholder="Short description about you" th:field="*{user.description}"></textarea>
+          </div>
+
+          <hr class="hr-lg">
+
+          <h6>Basic information</h6>
+          <div class="row">
+
+            <div class="form-group col-xs-12 col-sm-6">
+              <div class="input-group input-group-sm">
+                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <input type="text" class="form-control" placeholder="Address" th:field="*{user.address}">
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-sm-6">
+              <div class="input-group input-group-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="text" class="form-control" placeholder="Email address" th:field="*{user.email}">
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-sm-6">
+              <div class="input-group input-group-sm">
+                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <input type="text" class="form-control" placeholder="Phone number" th:field="*{user.phone}">
+              </div>
+            </div>
+
+<!--            <div class="form-group col-xs-12 col-sm-6">-->
+<!--              <select name="role" class="form-control selectpicker" data-placeholder="Choose one..." >-->
+<!--                <option th:each="role : ${roleList}" -->
+<!--                        th:value="${user.roles}"-->
+<!--                        th:if="${}">Заказчик</option>-->
+<!--              </select>-->
+<!--            </div>-->
+
+
+          </div>
+
+          <hr class="hr-lg">
+
+
+        </div>
+      </div>
+
+    </div>
+  </header>
+  <!-- END Page header -->
+
+
+  <!-- Main container -->
+  <main>
+
+
+
+
+    <!-- Submit -->
+    <section class=" bg-img" style="background-image: url(/img/bg-facts.jpg);">
+      <div class="container">
+        <header class="section-header">
+          <span>Вы закончили?</span>
+          <h2>Подать резюме</h2>
+          <p>Пожалуйста, просмотрите свою информацию еще раз и нажмите кнопку ниже, чтобы разместить свое резюме в Интернете.</p>
+        </header>
+
+        <p class="text-center"><button type="submit" class="btn btn-success btn-xl btn-round">Отправьте свое резюме</button></p>
+
+      </div>
+    </section>
+    <!-- END Submit -->
+
+
+  </main>
+  <!-- END Main container -->
+
+</form>
+
+<!-- Site footer -->
+<footer th:replace="~{fragment/heder-footer-fragment :: footer}" class="site-footer">
+
+</footer>
+<!-- END Site footer -->
+
+
+<!-- Back to top button -->
+<a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/vendors/summernote/summernote.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

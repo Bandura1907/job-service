@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,15 +53,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public boolean saveUser(User user) {
+    public boolean saveRegisterUser(User user) {
         User userFromDb = userRepository.findByUsername(user.getUsername());
 
         if (userFromDb != null) {
             return false;
         }
-
-
-
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -79,6 +75,11 @@ public class UserService implements UserDetailsService {
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
+
     }
 
 //    public List<User> usergtList(Long idMin) {

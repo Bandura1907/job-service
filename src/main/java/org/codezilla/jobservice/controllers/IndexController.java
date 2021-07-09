@@ -2,7 +2,9 @@ package org.codezilla.jobservice.controllers;
 
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.models.order.Job;
+import org.codezilla.jobservice.models.order.Service;
 import org.codezilla.jobservice.services.JobServiceImpl;
+import org.codezilla.jobservice.services.OrderServiceImpl;
 import org.codezilla.jobservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,9 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private OrderServiceImpl orderService;
+
     @GetMapping("/")
     public String getIndex() {
         return "index";
@@ -38,9 +43,13 @@ public class IndexController {
 
     @GetMapping("/job-list")
     public String jobList(Model model) {
-
-
         return findPaginated(1, model);
+
+    }
+
+    @GetMapping("/service-list")
+    public String serviceList(Model model) {
+        return findServicePaginated(1, model);
     }
 
     @GetMapping("/job-list/page/{pageNo}")
@@ -59,17 +68,29 @@ public class IndexController {
         return "job-list";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
+    @GetMapping("/service-list/page/{pageNo}")
+    public String findServicePaginated(@PathVariable int pageNo, Model model) {
+        int pageSize = 5;
+
+        Page<Service> page = orderService.findPaginated(pageNo, pageSize);
+        List<Service> listServices = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("listServices", listServices);
+
+        return "service-list";
     }
 
-    @PreAuthorize("hasRole('ROLE_CLIENT')")
-    @GetMapping("/client")
-    public String client () {
-        return "client";
+    @GetMapping("/resume-detail/{id}")
+    public String resumeDetail(@PathVariable long id, Model model) {
+        model.addAttribute("findUser", userService.findUserById(id));
+
+        return "resume-detail";
     }
+
 
     @ModelAttribute("user")
     public User user() {

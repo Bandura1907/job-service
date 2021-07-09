@@ -53,7 +53,7 @@
 
                 <li>
                     <i class="fa fa-user"></i>
-                    <a th:text="${jobDetail.user.username}" href="/account/account-detail"></a>
+                    <a th:text="${jobDetail.user.username}" th:href="@{'/resume-detail/' + ${jobDetail.user.id}}"></a>
                 </li>
 
             </ul>

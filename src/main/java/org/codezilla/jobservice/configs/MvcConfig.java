@@ -15,9 +15,9 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        String absolutePath = new File("src/main/resources/static/freelance-job-create-avatars").getAbsolutePath().replace('\\', '/') + "/";
-//        registry.addResourceHandler("/freelance-job-create-avatars/**").addResourceLocations("file:///" + absolutePath);
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        String absolutePath = new File("src/main/resources/static/avatars").getAbsolutePath().replace('\\', '/') + "/";
+        registry.addResourceHandler("/avatars/**").addResourceLocations("file:///" + absolutePath);
+    }
 }

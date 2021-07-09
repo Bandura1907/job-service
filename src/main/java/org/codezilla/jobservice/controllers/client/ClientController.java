@@ -3,10 +3,9 @@ package org.codezilla.jobservice.controllers.client;
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.models.category.FirstCategory;
 import org.codezilla.jobservice.models.category.SecondCategory;
-import org.codezilla.jobservice.models.order.Job;
 import org.codezilla.jobservice.models.order.Service;
 import org.codezilla.jobservice.services.FirstCategoryService;
-import org.codezilla.jobservice.services.OrderService;
+import org.codezilla.jobservice.services.OrderServiceImpl;
 import org.codezilla.jobservice.services.SecondCategoryService;
 import org.codezilla.jobservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class ClientController {
     @Autowired
     private SecondCategoryService secondCategoryService;
     @Autowired
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
 
 
     @GetMapping("/post-order")

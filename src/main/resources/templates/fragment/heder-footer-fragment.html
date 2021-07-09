@@ -37,8 +37,8 @@
 
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="" th:text="|${user.name} ${user.sureName}|"></a></li>
-                    <li><a href="user-forget-pass.html">Настройка профиля</a></li>
+                    <li><a th:href="@{'/resume-detail/' + ${user.id}}" th:text="|${user.name} ${user.sureName}|"></a></li>
+                    <li><a href="/account/profile">Настройка профиля</a></li>
                     <li><a href="/logout">Вийти</a></li>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
                 <a href="/">Главная</a>
             </li>
             <li>
-                <a href="#">Доска объявлений</a>
+                <a href="/service-list">Доска объявлений</a>
             </li>
             <li>
                 <a href="/job-list">Биржа</a>
