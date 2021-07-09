@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<nav th:fragment="header(user)" class="navbar">
+    <div class="container">
+
+        <!-- Logo -->
+        <div class="pull-left">
+            <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+            <div class="logo-wrapper">
+                <a class="logo" href="/"><img th:src="@{/img/logo.png}" alt="logo"></a>
+                <a class="logo-alt" href="/"><img th:src="@{/img/logo-alt.png}" alt="logo-alt"></a>
+            </div>
+
+        </div>
+        <!-- END Logo -->
+
+        <!-- User account -->
+        <div th:if="${user == null}" class="pull-right user-login">
+            <a class="btn btn-sm btn-primary" href="/login">Войти</a> или <a href="/registration">зарегестрироватся</a>
+        </div>
+        <!-- END User account -->
+
+        <!-- User account -->
+        <div th:if="${user != null}" class="pull-right">
+
+            <div class="dropdown user-account">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                    <img th:src="@{/img/logo-envato.png}" alt="avatar">
+                </a>
+
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="" th:text="|${user.name} ${user.sureName}|"></a></li>
+                    <li><a href="user-forget-pass.html">Настройка профиля</a></li>
+                    <li><a href="/logout">Вийти</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- END User account -->
+
+        <!-- Navigation menu -->
+        <ul class="nav-menu">
+            <li>
+                <a href="/">Главная</a>
+            </li>
+            <li>
+                <a href="#">Доска объявлений</a>
+            </li>
+            <li>
+                <a href="/job-list">Биржа</a>
+            </li>
+            <li th:if="${user != null}">
+                <a href="#">Чат</a>
+            </li>
+            <li  sec:authorize="hasAuthority('ROLE_EXECUTOR')">
+                <a href="#">Услуги</a>
+                <ul>
+                    <li><a href="/freelancer/post-job">Создать объявление</a></li>
+                    <li><a href="/freelancer/job-manage">Мои предложения</a></li>
+                </ul>
+            </li>
+
+            <li sec:authorize="hasAuthority('ROLE_CLIENT')">
+                <a href="#">Услуги</a>
+                <ul>
+                    <li><a href="/client/post-order">Создать объявление</a></li>
+                    <li><a href="/client/order-manage">Мои предложения</a></li>
+                </ul>
+            </li>
+
+            <li th:if="${user != null}">
+                <a href="#">Посмотреть заказы</a>
+            </li>
+        </ul>
+        <!-- END Navigation menu -->
+
+    </div>
+</nav>
+
+
+<footer th:fragment="footer" class="site-footer">
+    <!-- Top section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <p class="text-justify">Веб-сайт по трудоустройству - это веб-сайт, специально посвященный вопросам
+                    трудоустройства или карьеры. Многие веб-сайты по трудоустройству предназначены для того, чтобы
+                    работодатели могли размещать требования к вакансиям, которые необходимо заполнить, и обычно известны
+                    как доски объявлений о вакансиях. Другие сайты по трудоустройству предлагают обзоры работодателей,
+                    советы по карьере и поиску работы, а также описывают различные описания должностей или
+                    работодателей. Через веб-сайт о вакансиях потенциальный сотрудник может найти и заполнить заявление
+                    о приеме на работу.</p>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Компания</h6>
+                <ul class="footer-links">
+                    <li><a href="page-about.html">О нас</a></li>
+                    <li><a href="page-typography.html">Как это работает</a></li>
+                    <li><a href="page-faq.html">Центр помощи</a></li>
+                    <li><a href="page-typography.html">Политика конфиденциальности</a></li>
+                    <li><a href="page-contact.html">Свяжитесь с нами</a></li>
+                </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Актуальные вакансии</h6>
+                <ul class="footer-links">
+                    <li><a href="job-list.html">Front-end developer</a></li>
+                    <li><a href="job-list.html">Android developer</a></li>
+                    <li><a href="job-list.html">iOS developer</a></li>
+                    <li><a href="job-list.html">Full stack developer</a></li>
+                    <li><a href="job-list.html">Project administrator</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+    <!-- END Top section -->
+
+    <!-- Bottom section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">Copyrights &copy; 2021 All Rights Reserved by <a
+                        href="http://themeforest.net/user/shamsoft">ShaMSofT</a>.</p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END Bottom section -->
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <title>TheJobs - Login</title>
+
+    <!-- Styles -->
+    <link th:href="@{/css/app.min.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="login-page">
+
+
+<main>
+
+    <div class="login-block">
+        <img th:src="@{/img/logo.png}" alt="">
+        <h1>Log into your account</h1>
+
+        <form th:action="@{/login}" method="post">
+
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                <strong>Внимание!</strong> Неверные данние для авторизации.
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-user"></i></span>
+                    <input type="text" name="username" class="form-control" placeholder="Логин" required>
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-unlock"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="Пароль" required>
+                </div>
+            </div>
+
+            <input class="btn btn-primary btn-block" type="submit" value="Войти">
+
+
+        </form>
+    </div>
+
+    <div class="login-links">
+        <a class="pull-left" href="user-forget-pass.html">Forget Password?</a>
+        <a class="pull-right" href="/registration">Зарегестрироватся</a>
+    </div>
+
+</main>
+
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+  <title>TheJobs - Manage jobs</title>
+
+  <!-- Styles -->
+  <link th:href="@{/css/app.min.css}" rel="stylesheet">
+  <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="nav-on-header bg-alt">
+
+
+<!-- Navigation bar -->
+<nav th:replace="~{fragment/heder-footer-fragment :: header(${user})}" class="navbar"></nav>
+<!-- END Navigation bar -->
+
+
+<!-- Page header -->
+<header class="page-header bg-img size-lg" style="background-image: url(/img/bg-banner1.jpg)">
+  <div class="container no-shadow">
+    <h1 class="text-center">Управлять вакансиями</h1>
+    <p class="lead text-center">Вот список присланных вами вакансий. Вы можете отредактировать или удалить их или даже добавить новый.</p>
+  </div>
+</header>
+<!-- END Page header -->
+
+
+<!-- Main container -->
+<main>
+  <section class="no-padding-top bg-alt">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-12 text-right">
+          <br>
+          <a class="btn btn-primary btn-sm" href="/freelancer/post-job">Добавить новую вакансию</a>
+        </div>
+
+
+        <!-- Job detail -->
+        <div th:each="job : ${user.userJobList}" class="col-xs-12">
+          <div class="item-block">
+            <header>
+<!--              <a href="company-detail.html"><img th:src="@{/img/logo-google.jpg}" alt=""></a>-->
+              <div class="hgroup">
+                <h4><a th:text="${job.title}" th:href="@{'/job-detail/' + ${job.id}}">Senior front-end developer</a></h4>
+                <h5><a th:text="${job.firstCategory.firstName}" href="#">Google</a></h5>
+              </div>
+              <div class="header-meta">
+                <span th:text="${job.price} + '$'">Menlo park, CA</span>
+                <br>
+                <time th:text="${job.dateTime}" >34 min ago</time>
+              </div>
+            </header>
+
+            <footer>
+              <p class="status"><strong>Статус:</strong> Активно</p>
+
+              <div class="action-btn">
+                <a class="btn btn-xs btn-gray" th:href="@{'/freelancer/job-edit/' + ${job.id}}">Edit</a>
+                <a class="btn btn-xs btn-danger" th:href="@{'/freelancer/job-delete/' + ${job.id}}">Delete</a>
+              </div>
+            </footer>
+          </div>
+        </div>
+        <!-- END Job detail -->
+
+
+
+
+      </div>
+    </div>
+  </section>
+</main>
+<!-- END Main container -->
+
+
+<!-- Site footer -->
+<footer th:replace="~{fragment/heder-footer-fragment :: footer}" class="site-footer"></footer>
+<!-- END Site footer -->
+
+
+<!-- Back to top button -->
+<a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

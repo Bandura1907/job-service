@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Post a job position or create your online resume by TheJobs!">
+    <meta name="keywords" content="">
+
+    <title>TheJobs - Job list</title>
+
+    <!-- Styles -->
+    <link th:href="@{/css/app.min.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="nav-on-header bg-alt">
+
+<!-- Navigation bar -->
+<nav th:replace="~{fragment/heder-footer-fragment :: header(${user})}" class="navbar">
+
+</nav>
+<!-- END Navigation bar -->
+
+
+<!-- Page header -->
+<header class="page-header bg-img" style="background-image: url(/img/bg-banner1.jpg);">
+    <div class="container page-name">
+        <h1 class="text-center">Просмотр вакансий</h1>
+    </div>
+
+
+</header>
+<!-- END Page header -->
+
+
+<!-- Main container -->
+<main>
+    <section class="no-padding-top bg-alt">
+        <div class="container">
+            <div class="row">
+
+                <!--        <div class="col-xs-12">-->
+                <!--          <br>-->
+                <!--          <h5>We found <strong>357</strong> matches, you're watching <i>10</i> to <i>20</i></h5>-->
+                <!--        </div>-->
+
+                <!-- Job item -->
+                <div th:each="job : ${listJobs}" class="col-xs-12">
+                    <a class="item-block" th:href="@{'/job-detail/' + ${job.id}}">
+                        <header>
+                            <div class="hgroup">
+                                <h4 th:text="${job.title}">Senior front-end developer</h4>
+                                <h5 th:text="${job.firstCategory.firstName}"></h5>
+                            </div>
+                            <time th:text="${job.dateTime}" datetime="2016-03-10 20:00">34 min ago</time>
+                        </header>
+
+                        <div class="item-body">
+                            <p th:text="${job.description}">A rapidly growing, well established marketing firm is
+                                looking for an experienced web developer for a full-time position. In this role, you
+                                will develop websites, apps, emails and other forms of digital electronic media, all
+                                while maintaining brand standards across design projects and other marketing
+                                communication materials.</p>
+                        </div>
+
+                        <footer>
+                            <ul class="details cols-3">
+                                <li>
+                                    <i class="fa fa-location-arrow"></i>
+                                    <span th:text="${job.user.address}">Menlo Park, CA</span>
+                                </li>
+
+                                <li>
+                                    <i class="fa fa-money"></i>
+                                    <span th:text="${job.price} + '$'">$90,000 - $110,000 / year</span>
+                                </li>
+
+                                <li>
+                                    <i class="fa fa-user"></i>
+                                    <span th:text="${job.user.username}">Master or Bachelor</span>
+                                </li>
+                            </ul>
+                        </footer>
+                    </a>
+                </div>
+                <!-- END Job item -->
+
+            </div>
+
+
+<!--            &lt;!&ndash; Page navigation &ndash;&gt;-->
+<!--            <nav class="text-center">-->
+<!--                <ul th:if="${totalPages > 1}" class="pagination">-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a th:if="${currentPage >= totalPages}" th:href="@{'/job-list/page/' + ${currentPage - 1}}"&ndash;&gt;-->
+<!--&lt;!&ndash;                           aria-label="Previous">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <i class="ti-angle-left"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                    <li class="active" th:each="i : ${#numbers.sequence(1, totalPages)}">-->
+<!--                        <a th:if="${currentPage != i}"-->
+<!--                           th:href="@{'/job-list/page/' + ${i}}"-->
+<!--                           th:text="${i}">-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a th:if="${currentPage < totalPages}" th:href="@{'/job-list/page/' + ${currentPage + 1}}"-->
+<!--                           aria-label="Next">-->
+<!--                            <i class="ti-angle-right"></i>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+<!--            &lt;!&ndash; END Page navigation &ndash;&gt;-->
+
+            <nav>
+                <ul th:if="${totalPages > 1}" class="pager">
+                    <li th:if="${currentPage > 1}" class="previous"><a th:href="@{'/job-list/page/' + ${currentPage - 1}}"><i class="ti-arrow-left"></i> Prev</a></li>
+                    <li th:if="${currentPage < totalPages}" class="next"><a th:href="@{'/job-list/page/' + ${currentPage + 1}}">Next <i class="ti-arrow-right"></i></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+</main>
+<!-- END Main container -->
+
+
+<!-- Site footer -->
+<footer th:replace="~{fragment/heder-footer-fragment :: footer}" class="site-footer">
+
+</footer>
+<!-- END Site footer -->
+
+
+<!-- Back to top button -->
+<a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <title>TheJobs - Job detail</title>
+
+    <!-- Styles -->
+    <link th:href="@{/css/app.min.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="nav-on-header">
+
+<!-- Navigation bar -->
+<nav th:replace="~{fragment/heder-footer-fragment :: header(${user})}" class="navbar">
+
+</nav>
+<!-- END Navigation bar -->
+
+
+<!-- Page header -->
+<header class="page-header bg-img size-lg" style="background-image: url(/img/bg-banner2.jpg)">
+    <div class="container">
+        <div class="header-detail">
+            <div class="hgroup">
+                <h1 th:text="${jobDetail.title}">Senior front-end developer</h1>
+                <h3><a href="#" th:text="${jobDetail.firstCategory.firstName}">Google</a></h3>
+            </div>
+            <time th:text="${jobDetail.dateTime}" datetime="2016-03-03 20:00">2 days ago</time>
+            <hr>
+            <p class="lead" th:text="${jobDetail.description}"></p>
+
+            <ul class="details cols-3">
+
+
+                <li>
+                    <i class="fa fa-briefcase"></i>
+                    <span th:text="${jobDetail.secondCategory.secondName}">Full time</span>
+                </li>
+
+                <li>
+                    <i class="fa fa-money"></i>
+                    <span th:text="${jobDetail.price} + '$'">$90,000 - $110,000 / year</span>
+                </li>
+
+                <li>
+                    <i class="fa fa-user"></i>
+                    <a th:text="${jobDetail.user.username}" href="/account/account-detail"></a>
+                </li>
+
+            </ul>
+
+            <div class="button-group">
+                <!--                <ul class="social-icons">-->
+                <!--                    <li class="title">Ваше объявление</li>-->
+                <!--                </ul>-->
+
+                <div th:if="${jobDetail.user != user}" class="action-buttons">
+                    <a class="btn btn-primary" href="#">Установить связь</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+<!-- END Page header -->
+
+
+<!-- Main container -->
+<main>
+
+
+</main>
+<!-- END Main container -->
+
+
+<!-- Site footer -->
+<footer th:replace="~{fragment/heder-footer-fragment :: footer}" class="site-footer">
+
+</footer>
+<!-- END Site footer -->
+
+
+<!-- Back to top button -->
+<a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

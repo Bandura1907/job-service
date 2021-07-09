@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <title>TheJobs - Register</title>
+
+    <!-- Styles -->
+    <link th:href="@{/css/app.min.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="login-page">
+
+
+<main>
+
+    <div class="login-block">
+        <img th:src="@{/img/logo.png}" alt="">
+        <h1>Log into your account</h1>
+
+        <form th:action="@{/registration}" method="post">
+
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-user"></i></span>
+                    <input type="text" name="name" class="form-control" placeholder="Имя">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-user"></i></span>
+                    <input type="text" name="sureName" class="form-control" placeholder="Фамилия">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-user"></i></span>
+                    <input type="text" name="username" class="form-control" placeholder="Логин">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-email"></i></span>
+                    <input type="text" name="email" class="form-control" placeholder="email адрес">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <select name="role" class="form-control selectpicker" data-placeholder="Choose one...">
+                    <option>Заказчик</option>
+                    <option>Исполнитель</option>
+                </select>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-user"></i></span>
+                    <input type="number" name="phone" class="form-control" placeholder="Телефон">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-email"></i></span>
+                    <input type="text" name="address" class="form-control" placeholder="Aдрес">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-unlock"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="Пароль">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="ti-unlock"></i></span>
+                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Choose a password">
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+
+
+        </form>
+    </div>
+
+    <div class="login-links">
+        <p class="text-center">У вас уже есть аккаунт? <a class="txt-brand" href="/login">Login</a></p>
+    </div>
+
+</main>
+
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

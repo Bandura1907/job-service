@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>TheJobs - Add job</title>
+
+  <!-- Styles -->
+  <link th:href="@{/css/app.min.css}" rel="stylesheet">
+  <link th:href="@{/css/summernote.css}" rel="stylesheet">
+  <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="nav-on-header">
+
+<!-- Navigation bar -->
+<nav th:replace="~{fragment/heder-footer-fragment :: header(${user})}" class="navbar"></nav>
+<!-- END Navigation bar -->
+
+
+<form th:action="@{/client/post-order-save}" method="post" >
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="container page-name">
+      <h1 class="text-center">Добавить заказ</h1>
+      <p class="lead text-center">Создайте новий заказ.</p>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <input name="title" type="text" class="form-control input-lg" placeholder="Заголовок заказа">
+        </div>
+
+
+        <div class="form-group col-xs-12">
+          <textarea name="description" class="form-control" rows="3" placeholder="Краткое описание"></textarea>
+        </div>
+
+        <div class="form-group col-xs-12 col-sm-6 col-md-4">
+          <div class="input-group input-group-sm">
+            <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+            <select  name="firstCategory" class="form-control selectpicker">
+              <option th:each="firstCategory : ${firstCategoryList}" th:value="${firstCategory.id}"
+                      th:text="${firstCategory.firstName}">Full time</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group col-xs-12 col-sm-6 col-md-4">
+          <div class="input-group input-group-sm">
+            <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+            <select name="secondCategory" class="form-control selectpicker">
+              <option th:each="secondCategory : ${secondCategoryList}" th:value="${secondCategory.id}"
+                      th:text="${secondCategory.secondName}">Нічого не вибрано</option>
+            </select>
+          </div>
+        </div>
+
+
+
+        <div class="form-group col-xs-12 ">
+          <div class="input-group input-group-sm">
+            <span class="input-group-addon"><i class="fa fa-money"></i></span>
+            <input name="price" type="number" class="form-control" placeholder="Оплата труда">
+          </div>
+        </div>
+
+
+      </div>
+
+      <!--      <div class="button-group">-->
+      <!--        <div class="action-buttons">-->
+      <!--          <div class="upload-button">-->
+      <!--            <button class="btn btn-block btn-primary">Выберите изображение для обложки</button>-->
+      <!--            <input id="cover_img_file" name="file" type="file">-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+    </div>
+  </header>
+  <!-- END Page header -->
+
+
+  <!-- Main container -->
+  <main>
+
+
+    <!-- Submit -->
+    <section class="bg-alt">
+      <div class="container">
+        <header class="section-header">
+          <span>Вы закончили?</span>
+          <h2>Отправить вакансию</h2>
+          <p>Пожалуйста, просмотрите свою информацию еще раз и нажмите кнопку ниже, чтобы разместить свою работу в Интернете.</p>
+        </header>
+
+        <p class="text-center"><button class="btn btn-success btn-xl btn-round">Отправьте свою работу</button></p>
+
+      </div>
+    </section>
+    <!-- END Submit -->
+
+
+  </main>
+  <!-- END Main container -->
+</form>
+
+
+<!-- Site footer -->
+<footer th:replace="~{fragment/heder-footer-fragment :: footer}" class="site-footer"></footer>
+<!-- END Site footer -->
+
+
+<!-- Back to top button -->
+<a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/js/summernote.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>
