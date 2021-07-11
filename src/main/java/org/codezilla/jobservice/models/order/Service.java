@@ -19,6 +19,8 @@ public class Service {
     private Long id;
 
     private String title;
+
+    @Column(length = 2500)
     private String description;
     private Double price;
     private LocalDateTime dateTime;

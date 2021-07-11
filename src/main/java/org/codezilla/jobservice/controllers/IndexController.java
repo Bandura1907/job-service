@@ -8,8 +8,6 @@ import org.codezilla.jobservice.services.OrderServiceImpl;
 import org.codezilla.jobservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +24,6 @@ public class IndexController {
     private JobServiceImpl jobService;
     @Autowired
     private UserService userService;
-
     @Autowired
     private OrderServiceImpl orderService;
 

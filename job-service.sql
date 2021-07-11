@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 02 2021 г., 21:47
+-- Время создания: Июл 11 2021 г., 10:28
 -- Версия сервера: 10.4.19-MariaDB
 -- Версия PHP: 8.0.6
 
@@ -66,13 +66,20 @@ INSERT INTO `first_category` (`id`, `first_name`) VALUES
 CREATE TABLE `job` (
   `id` bigint(20) NOT NULL,
   `date_time` datetime DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` varchar(2500) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `first_category_id` bigint(20) DEFAULT NULL,
   `second_category_id` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `job`
+--
+
+INSERT INTO `job` (`id`, `date_time`, `description`, `price`, `title`, `first_category_id`, `second_category_id`, `user_id`) VALUES
+(1, '2021-07-11 10:51:11', 'Веб-сайт по трудоустройству - это веб-сайт, специально посвященный вопросам трудоустройства или карьеры. Многие веб-сайты по трудоустройству предназначены для того, чтобы работодатели могли размещать требования к вакансиям, которые необходимо заполнить, и обычно известны как доски объявлений о вакансиях. Другие сайты по трудоустройству предлагают обзоры работодателей, советы по карьере и поиску работы, а также описывают различные описания должностей или работодателей. Через веб-сайт о вакансиях потенциальный сотрудник может найти и заполнить заявление о приеме на работу.\r\n\r\n', 3198, 'java back end dev', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -320,7 +327,7 @@ INSERT INTO `second_category` (`id`, `second_name`, `first_category_id`) VALUES
 CREATE TABLE `service` (
   `id` bigint(20) NOT NULL,
   `date_time` datetime DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` varchar(2500) DEFAULT NULL,
   `photos_url` varchar(255) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
@@ -339,13 +346,22 @@ CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `balance` double DEFAULT NULL,
+  `description` varchar(1200) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `phone` bigint(20) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
   `sure_name` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `address`, `balance`, `description`, `email`, `name`, `password`, `phone`, `photo`, `sure_name`, `username`) VALUES
+(1, 'Московская 45/1', NULL, NULL, 'taras190789@gmail.com', 'Olexandr', '$2a$10$A5gGaM9amS.sTHq4zB0YF.ciDNfO94bp29Md7mbt5IyO1F2HBKuF6', 241312321, NULL, 'Golub', 'admin');
 
 -- --------------------------------------------------------
 
@@ -357,6 +373,13 @@ CREATE TABLE `user_roles` (
   `user_id` bigint(20) NOT NULL,
   `role_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `user_roles`
+--
+
+INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
+(1, 4);
 
 --
 -- Индексы сохранённых таблиц
@@ -442,7 +465,7 @@ ALTER TABLE `first_category`
 -- AUTO_INCREMENT для таблицы `job`
 --
 ALTER TABLE `job`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `messages`
@@ -478,7 +501,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

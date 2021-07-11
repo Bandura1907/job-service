@@ -21,6 +21,8 @@ public class Job {
     private Long id;
 
     private String title;
+
+    @Column(length = 2500)
     private String description;
     private Double price;
     private LocalDateTime dateTime;
@@ -34,8 +36,6 @@ public class Job {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private SecondCategory secondCategory;
-
-
 
     @OneToMany(mappedBy = "job", cascade = CascadeType.ALL)
     private List<Proposals> jobProposalsList;
