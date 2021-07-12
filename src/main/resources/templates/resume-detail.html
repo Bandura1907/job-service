@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Post a job position or create your online resume by TheJobs!">
+  <meta name="keywords" content="">
+
+  <title>TheJobs - Resume detail</title>
+
+  <!-- Styles -->
+  <link  th:href="@{/css/app.min.css}" rel="stylesheet">
+  <link th:href="@{/css/custom.css}" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" th:href="@{/img/favicon.ico}">
+</head>
+
+<body class="nav-on-header">
+
+<!-- Navigation bar -->
+<nav th:replace="~{fragment/heder-footer-fragment :: header(${user})}" class="navbar">
+
+</nav>
+<!-- END Navigation bar -->
+
+
+<!-- Page header -->
+<header class="page-header bg-img" style="background-image: url(/img/bg-banner1.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <img th:src="${findUser.photo != null ? '/avatars/' + findUser.photo  : '/avatars/default-avatar.jpg'}" alt="">
+      </div>
+
+      <div class="col-xs-12 col-sm-8 header-detail">
+        <div class="hgroup">
+          <h1 th:text="|${findUser.name} ${findUser.sureName}|">John Doe</h1>
+<!--          <h3>Front-end developer</h3>-->
+        </div>
+        <hr>
+        <p class="lead" th:text="${findUser.description}">The front end  is the part that users see and interact with, includes the User Interface, the animations, and usually a bunch of logic to talk to the backend. It is the visual bit that the user interacts with. This includes the design, images, colours, buttons, forms, typography, animations and content. It’s basically everything that you as a user of the website can see.</p>
+
+        <ul class="details cols-2">
+          <li>
+            <i class="fa fa-map-marker"></i>
+            <span th:text="${findUser.address}">Mountain view, CA</span>
+          </li>
+
+          <li>
+            <i class="fa fa-phone"></i>
+            <span th:text="${findUser.phone}">(+1) 123 456 7890</span>
+          </li>
+
+          <li>
+            <i class="fa fa-envelope"></i>
+            <a href="#" th:text="${findUser.email}">hi@mywebsite.me</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div th:if="${!findUser.equals(user)}" class="button-group">
+      <div class="action-buttons">
+        <a class="btn btn-success" href="#">Contact me</a>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- END Page header -->
+
+
+
+
+<!-- Site footer -->
+<footer th:replace="~{fragment/heder-footer-fragment :: footer}" class="site-footer">
+
+</footer>
+<!-- END Site footer -->
+
+
+<!-- Back to top button -->
+<a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+<!-- END Back to top button -->
+
+<!-- Scripts -->
+<script th:src="@{/js/app.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+
+</body>
+</html>

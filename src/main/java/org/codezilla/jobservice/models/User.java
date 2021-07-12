@@ -37,6 +37,11 @@ public class User implements UserDetails {
     private String address;
     private Double balance;
 
+    private String photo;
+    
+    @Column(length = 1200)
+    private String description;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),

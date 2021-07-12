@@ -1,7 +1,6 @@
 package org.codezilla.jobservice.controllers;
 
 import org.codezilla.jobservice.models.ERole;
-import org.codezilla.jobservice.models.Role;
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.repository.RoleRepository;
 import org.codezilla.jobservice.services.UserService;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
 import java.util.Collections;
 
 @Controller
@@ -60,7 +58,7 @@ public class AuthController {
             return "registration";
         }
 
-        if (userService.saveUser(userForm)) {
+        if (userService.saveRegisterUser(userForm)) {
             return "redirect:/";
         } else {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
