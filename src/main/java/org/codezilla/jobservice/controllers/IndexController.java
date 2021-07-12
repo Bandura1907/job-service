@@ -8,6 +8,7 @@ import org.codezilla.jobservice.services.OrderServiceImpl;
 import org.codezilla.jobservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Controller
@@ -42,6 +44,11 @@ public class IndexController {
     public String jobList(Model model) {
         return findPaginated(1, model);
 
+    }
+
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
     }
 
     @GetMapping("/service-list")
