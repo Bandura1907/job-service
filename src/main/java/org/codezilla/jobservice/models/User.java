@@ -9,6 +9,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +42,7 @@ public class User implements UserDetails {
 
     private String photo;
     
-    @Column(length = 1200)
+    @Column(length = 64000)
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER)
