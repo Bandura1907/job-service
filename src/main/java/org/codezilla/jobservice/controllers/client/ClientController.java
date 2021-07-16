@@ -1,5 +1,6 @@
 package org.codezilla.jobservice.controllers.client;
 
+import lombok.AllArgsConstructor;
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.models.category.FirstCategory;
 import org.codezilla.jobservice.models.category.SecondCategory;
@@ -22,14 +23,13 @@ import java.util.List;
 @Controller
 @PreAuthorize("hasRole('ROLE_CLIENT')")
 @RequestMapping("/client")
+@AllArgsConstructor
 public class ClientController {
-    @Autowired
+
+
     private UserService userService;
-    @Autowired
     private FirstCategoryService firstCategoryService;
-    @Autowired
     private SecondCategoryService secondCategoryService;
-    @Autowired
     private OrderServiceImpl orderService;
 
 

@@ -1,10 +1,9 @@
 package org.codezilla.jobservice.controllers.account;
 
+import lombok.AllArgsConstructor;
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +19,9 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/account")
 @PreAuthorize("hasRole('ROLE_CLIENT') or hasRole('ROLE_EXECUTOR')")
+@AllArgsConstructor
 public class AccountDetailController {
 
-    @Autowired
     private UserService userService;
 
     @GetMapping("/profile")
@@ -65,7 +64,6 @@ public class AccountDetailController {
 
     @ModelAttribute("user")
     public User user() {
-
         return userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }

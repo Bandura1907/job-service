@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -37,7 +37,8 @@
 
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a th:href="@{'/resume-detail/' + ${user.id}}" th:text="|${user.name} ${user.sureName}|"></a></li>
+                    <li><a th:href="@{'/resume-detail/' + ${user.id}}" th:text="|${user.name} ${user.sureName}|"></a>
+                    </li>
                     <li><a href="/account/profile">Настройка профиля</a></li>
                     <li><a href="/logout">Вийти</a></li>
                 </ul>
@@ -58,9 +59,9 @@
                 <a href="/job-list">Биржа</a>
             </li>
             <li th:if="${user != null}">
-                <a href="#">Чат</a>
+                <a href="/chat">Чат</a>
             </li>
-            <li  sec:authorize="hasAuthority('ROLE_EXECUTOR')">
+            <li sec:authorize="hasAuthority('ROLE_EXECUTOR')">
                 <a href="#">Услуги</a>
                 <ul>
                     <li><a href="/freelancer/post-job">Создать объявление</a></li>

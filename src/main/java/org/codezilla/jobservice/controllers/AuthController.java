@@ -1,10 +1,10 @@
 package org.codezilla.jobservice.controllers;
 
+import lombok.AllArgsConstructor;
 import org.codezilla.jobservice.models.ERole;
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.repository.RoleRepository;
 import org.codezilla.jobservice.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Collections;
 
 @Controller
+@AllArgsConstructor
 public class AuthController {
 
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private RoleRepository roleRepository;
 
     @GetMapping("/registration")
@@ -34,13 +33,14 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") User userForm, BindingResult results, Model model, HttpServletRequest request) {
+    public String addUser(@Valid @ModelAttribute("userForm") User userForm, BindingResult results, Model model, HttpServletRequest request) {
 
         if (request.getParameter("role").equals("Заказчик")){
             userForm.setRoles(Collections.singleton(roleRepository.findByName(ERole.ROLE_CLIENT).get()));
         } else {
             userForm.setRoles(Collections.singleton(roleRepository.findByName(ERole.ROLE_EXECUTOR).get()));
         }
+
 
         if (results.hasErrors()) {
             System.out.println(results);
