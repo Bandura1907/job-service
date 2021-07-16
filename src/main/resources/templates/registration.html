@@ -25,14 +25,14 @@
         <img th:src="@{/img/logo.png}" alt="">
         <h1>Log into your account</h1>
 
-        <form th:action="@{/registration}" method="post">
+        <form th:action="@{/registration}" th:object="${userForm}" method="post">
 
 
 
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-user"></i></span>
-                    <input type="text" name="name" class="form-control" placeholder="Имя">
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Имя">
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-user"></i></span>
-                    <input type="text" name="sureName" class="form-control" placeholder="Фамилия">
+                    <input type="text" th:field="*{sureName}" class="form-control" placeholder="Фамилия">
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-user"></i></span>
-                    <input type="text" name="username" class="form-control" placeholder="Логин">
+                    <input type="text" th:field="*{username}" class="form-control" placeholder="Логин">
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-email"></i></span>
-                    <input type="text" name="email" class="form-control" placeholder="email адрес">
+                    <input type="text" th:field="*{email}" class="form-control" placeholder="email адрес">
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-user"></i></span>
-                    <input type="number" name="phone" class="form-control" placeholder="Телефон">
+                    <input type="number" th:field="*{phone}" class="form-control" placeholder="Телефон">
                 </div>
             </div>
 
@@ -86,7 +86,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-email"></i></span>
-                    <input type="text" name="address" class="form-control" placeholder="Aдрес">
+                    <input type="text" th:field="*{address}" class="form-control" placeholder="Aдрес">
                 </div>
             </div>
 
@@ -95,7 +95,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-unlock"></i></span>
-                    <input type="password" name="password" class="form-control" placeholder="Пароль">
+                    <input type="password" th:field="*{password}" class="form-control" placeholder="Пароль">
                 </div>
             </div>
 
@@ -104,7 +104,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="ti-unlock"></i></span>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Choose a password">
+                    <input type="password" th:field="*{passwordConfirm}" class="form-control" placeholder="Choose a password">
                 </div>
             </div>
 

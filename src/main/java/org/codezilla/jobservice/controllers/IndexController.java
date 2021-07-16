@@ -1,5 +1,6 @@
 package org.codezilla.jobservice.controllers;
 
+import lombok.AllArgsConstructor;
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.models.order.Job;
 import org.codezilla.jobservice.models.order.Service;
@@ -20,13 +21,11 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class IndexController {
 
-    @Autowired
     private JobServiceImpl jobService;
-    @Autowired
     private UserService userService;
-    @Autowired
     private OrderServiceImpl orderService;
 
     @GetMapping("/")
@@ -38,6 +37,12 @@ public class IndexController {
     public String jobDetail(@PathVariable long id, Model model) {
         model.addAttribute("jobDetail", jobService.findById(id));
         return "job-detail";
+    }
+
+    @GetMapping("/service-detail/{id}")
+    public String serviceDetail(@PathVariable long id, Model model) {
+        model.addAttribute("serviceDetail", orderService.findById(id));
+        return "service-detail";
     }
 
     @GetMapping("/job-list")
@@ -94,6 +99,7 @@ public class IndexController {
 
         return "resume-detail";
     }
+
 
 
     @ModelAttribute("user")

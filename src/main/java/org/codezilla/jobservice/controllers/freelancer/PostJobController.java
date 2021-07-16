@@ -1,5 +1,6 @@
 package org.codezilla.jobservice.controllers.freelancer;
 
+import lombok.AllArgsConstructor;
 import org.codezilla.jobservice.models.User;
 import org.codezilla.jobservice.models.category.FirstCategory;
 import org.codezilla.jobservice.models.category.SecondCategory;
@@ -23,17 +24,12 @@ import java.util.List;
 @Controller
 @PreAuthorize("hasRole('ROLE_EXECUTOR')")
 @RequestMapping("/freelancer")
+@AllArgsConstructor
 public class PostJobController {
-    @Autowired
+
     private UserService userService;
-
-    @Autowired
     private FirstCategoryService firstCategoryService;
-
-    @Autowired
     private SecondCategoryService secondCategoryService;
-
-    @Autowired
     private JobServiceImpl jobService;
 
     @GetMapping("/post-job")
